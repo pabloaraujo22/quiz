@@ -6,7 +6,6 @@ export default class QuestaoModel {
     #enunciado: string;
     #respostas: RespostaModel[];
     #acertou: boolean;
-    // #respondida: boolean
 
     constructor(
         id: number,
@@ -33,10 +32,13 @@ export default class QuestaoModel {
         return this.#acertou;
     }
     get respondida() {
+        let resp = false;
         this.#respostas.map((resposta) => {
-            if (resposta.revelada) return true;
+            if (resposta.revelada) {
+                resp = true;
+            }
         });
-        return false;
+        return resp;
     }
 
     embaralharRespostas(): QuestaoModel {
@@ -49,12 +51,23 @@ export default class QuestaoModel {
         );
     }
 
+    respondidaCom(indice: number): QuestaoModel {
+        const acertou = this.#respostas[indice]?.certa;
+        const respostas = this.#respostas.map((resposta, i) => {
+            const respostaSelecionada = i === indice;
+            const devRevelar = respostaSelecionada || resposta.certa;
+            return devRevelar ? resposta.revelar() : resposta;
+        });
+        return new QuestaoModel(this.#id, this.#enunciado, respostas, acertou);
+    }
+
     paraObjeto() {
         return {
             id: this.#id,
             enunciado: this.#enunciado,
             respostas: this.#respostas.map((resposta) => resposta.paraObjeto()),
             acertou: this.#acertou,
+            respondida: this.respondida,
         };
     }
 }
