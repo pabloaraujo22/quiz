@@ -1,3 +1,35 @@
 .resposta {
     display: flex;
+    width: 100%;
+}
+
+.conteudoResposta {
+}
+
+.frente,
+.verso {
+    display: flex;
+}
+
+.frente {
+    align-items: center;
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 15px;
+}
+.letra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.valor {
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
