@@ -10,13 +10,20 @@ interface QuestaoProps {
 export default function Questao(props: QuestaoProps) {
     const questao = props.valor;
 
+    const letras = [
+        { valor: 'A', cor: '#F2C866' },
+        { valor: 'B', cor: '#F266BA' },
+        { valor: 'C', cor: '#85D4F2' },
+        { valor: 'D', cor: '#BCE596' },
+    ];
+
     function renderizarRespostas() {
         return questao.respostas.map((resposta, i) => (
             <Resposta
                 valor={resposta}
                 indice={i}
-                letra="A"
-                corFundoLetra="#F2C866"
+                letra={letras[i].valor}
+                corFundoLetra={letras[i].cor}
                 key={i}
             />
         ));
