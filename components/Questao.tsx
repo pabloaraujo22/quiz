@@ -5,6 +5,7 @@ import Resposta from './Resposta';
 
 interface QuestaoProps {
     valor: QuestaoModel;
+    respostaFornecida: (indice: number) => void;
 }
 
 export default function Questao(props: QuestaoProps) {
@@ -25,6 +26,7 @@ export default function Questao(props: QuestaoProps) {
                 letra={letras[i].valor}
                 corFundoLetra={letras[i].cor}
                 key={i}
+                respostaFornecida={props.respostaFornecida}
             />
         ));
     }
