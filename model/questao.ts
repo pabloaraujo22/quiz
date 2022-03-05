@@ -31,6 +31,11 @@ export default class QuestaoModel {
     get acertou() {
         return this.#acertou;
     }
+
+    get naoRespondida() {
+        return !this.respondida;
+    }
+
     get respondida() {
         let resp = false;
         this.#respostas.map((resposta) => {
