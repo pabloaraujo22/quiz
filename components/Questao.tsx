@@ -28,7 +28,7 @@ export default function Questao(props: QuestaoProps) {
                 indice={i}
                 letra={letras[i].valor}
                 corFundoLetra={letras[i].cor}
-                key={i}
+                key={`${questao.id}-${i}`}
                 respostaFornecida={props.respostaFornecida}
             />
         ));
@@ -38,6 +38,7 @@ export default function Questao(props: QuestaoProps) {
         <div className={styles.questao}>
             <Enunciado texto={questao.enunciado} />
             <Temporizador
+                key={questao.id}
                 duracao={props.tempoparaResposta ?? 10}
                 tempoEsgotado={props.tempoEsgotado}
             />
