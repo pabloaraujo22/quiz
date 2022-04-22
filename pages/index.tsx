@@ -21,17 +21,19 @@ export default function Home() {
     async function carregarIdsDasQuestoes() {
         const resp = await fetch(`${BASE_URL}/questionario`);
         const idsQuestoes = await resp.json();
-        setIdsDasQuestoes(idsDasQuestoes);
+        setIdsDasQuestoes(idsQuestoes);
     }
 
     async function carregarQuestao(idQuestao: number) {
         const resp = await fetch(`${BASE_URL}/questoes/${idQuestao}`);
         const json = await resp.json();
+        const novaQuestao = QuestaoModel.criarUsandoObjeto(json);
+        setQuestao(novaQuestao);
     }
 
     useEffect(() => {
         carregarIdsDasQuestoes();
-    });
+    }, []);
 
     useEffect(() => {
         idsDasQuestoes.length > 0 && carregarQuestao(idsDasQuestoes[0]);
